@@ -8,7 +8,6 @@ import os
 required_conan_version = ">=1.50.0"
 
 
-# TODO(libhal-target): change class name
 class libhal___target___conan(ConanFile):
     name = "libhal-__target__"
     version = "0.0.1"
@@ -99,7 +98,7 @@ class libhal___target___conan(ConanFile):
 
         '''
         TODO(libhal-target): Update/correct architecture flags like
-            ["-mcpu=cortex-m3", "-mfloat-abi=soft]
+            ["-mcpu=cortex-m3", "-mfloat-abi=soft"]
         '''
         architecture_flags = []
 

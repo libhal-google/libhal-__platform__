@@ -1,6 +1,4 @@
-// TODO(libhal-target): Update these includes
-// #include <libhal-__target__/family1/clock.hpp>
-// #include <libhal-__target__/family1/output_pin.hpp>
+#include <libhal-__target__/output_pin.hpp>
 #include <libhal-armcortex/dwt_counter.hpp>
 #include <libhal-soft/inert_drivers/inert_output_pin.hpp>
 #include <libhal-util/serial.hpp>

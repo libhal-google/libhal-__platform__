@@ -12,6 +12,4 @@ on:
 jobs:
   ci:
     uses: libhal/ci/.github/workflows/library.yml@main
-    with:
-      library: libhal-__target__
     secrets: inherit

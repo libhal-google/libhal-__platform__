@@ -17,7 +17,7 @@ find_package(libhal-soft REQUIRED CONFIG)
 set(DEMOS blinker)
 
 # List of targets in the __target__ series devices
-set(TARGETS chip1 chip2)
+set(TARGETS __target___1 __target___2)
 
 # Iterate through each possible target and demo and generate a "make" target
 # for each.

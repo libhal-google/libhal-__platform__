@@ -125,10 +125,10 @@ class libhal___target___conan(ConanFile):
             self.cpp_info.components[component].cxxflags = flags
 
         '''
-        TODO(libhal-target): Add components for each supported chip
+        TODO(libhal-target): Add components for each supported device
         '''
-        create_component(self, "chip1", architecture_flags)
-        create_component(self, "chip2", architecture_flags)
+        create_component(self, "__target___1", architecture_flags)
+        create_component(self, "__target___2", architecture_flags)
 
     def package_id(self):
         self.info.clear()

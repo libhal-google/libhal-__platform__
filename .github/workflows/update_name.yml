@@ -22,14 +22,19 @@ jobs:
         id: target_name
         run: echo ${{ github.event.repository.name }} | sed -En "s/libhal-(.*)/target_name=\1/p" >> $GITHUB_ENV
 
-      - name: Replace placeholder's with ${{ env.target_name }} within files
-        run: find . -type f -not -path '*/\.*' -exec sed -i '' -e "s/__target__/${{ env.target_name }}/" {} \;
+      - name: Replace placeholder's in files
+        run: find . -type f -not -path '*/\.*' -type f -print0 | xargs -0 sed -i "s/__target__/${{ env.target_name }}/"
 
-      - name: Replace placeholder's with ${{ env.target_name }} in file & folder names
-        run: find . -not -path '*/\.*' -exec rename "s/__target__/${{ env.target_name }}/" {} \;
+      - name: Replace placeholder's in directory names
+        run: find . -type d -not -path '*/\.*' | xargs -r rename "s/__target__/${{ env.target_name }}/"
+
+      - name: Replace placeholder's in file names
+        run: find . -type f -not -path '*/\.*' | xargs -r rename "s/__target__/${{ env.target_name }}/"
 
       - name: Remove update_name.yml file
         run: rm .github/workflows/update_name.yml
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
+        with:
+          title: "Rename target package to libhal-${{ env.target_name }}"

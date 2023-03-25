@@ -10,7 +10,7 @@ jobs:
   update_name:
     name: 🖋️ Update package name
     runs-on: ubuntu-latest
-    if: github.repository != 'libhal/libhal-target'
+    if: github.repository != 'libhal/libhal-__target__'
     steps:
       - uses: actions/checkout@v2
         with:

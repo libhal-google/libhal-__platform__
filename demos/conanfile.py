@@ -7,7 +7,7 @@ class demos(ConanFile):
     generators = "CMakeToolchain", "CMakeDeps", "VirtualBuildEnv"
 
     def requirements(self):
-        self.requires("libhal-__target__/0.0.1")
+        self.requires("libhal-__platform__/0.0.1")
         self.requires("libhal-soft/[^1.1.0]")
         self.tool_requires("gnu-arm-embedded-toolchain/11.3.0")
         self.tool_requires("cmake-arm-embedded/0.1.1")

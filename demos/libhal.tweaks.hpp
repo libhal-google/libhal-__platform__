@@ -6,5 +6,5 @@
 #include <string_view>
 
 namespace hal::config {
-constexpr std::string_view platform = "__target__";
+constexpr std::string_view platform = "__platform__";
 }  // namespace hal::config

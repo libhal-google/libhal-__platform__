@@ -7,8 +7,8 @@ endif(NOT DEFINED CMAKE_BUILD_TYPE)
 # Set project name to demos
 project(demos VERSION 0.0.1 LANGUAGES CXX)
 
-# Import the libhal-__target__ library/package (and all of its dependencies)
-find_package(libhal-__target__ REQUIRED CONFIG)
+# Import the libhal-__platform__ library/package (and all of its dependencies)
+find_package(libhal-__platform__ REQUIRED CONFIG)
 find_package(libhal-soft REQUIRED CONFIG)
 
 # List of demo applications
@@ -16,8 +16,8 @@ find_package(libhal-soft REQUIRED CONFIG)
 # extension to this list.
 set(DEMOS blinker)
 
-# List of targets in the __target__ series devices
-set(TARGETS __target___1 __target___2)
+# List of targets in the __platform__ series devices
+set(TARGETS __platform___1 __platform___2)
 
 # Iterate through each possible target and demo and generate a "make" target
 # for each.

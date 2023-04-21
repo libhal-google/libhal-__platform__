@@ -8,16 +8,16 @@ import os
 required_conan_version = ">=1.50.0"
 
 
-class libhal___target___conan(ConanFile):
-    name = "libhal-__target__"
+class libhal___platform___conan(ConanFile):
+    name = "libhal-__platform__"
     version = "0.0.1"
     license = "Apache-2.0"
     url = "https://github.com/conan-io/conan-center-index"
-    homepage = "https://libhal.github.io/libhal-__target__"
-    description = ("Drivers for the __target__ series of microcontrollers "
+    homepage = "https://libhal.github.io/libhal-__platform__"
+    description = ("Drivers for the __platform__ series of microcontrollers "
                    "using libhal's abstractions.")
     topics = ("ARM", "microcontroller", "peripherals",
-              "hardware", "__target__")
+              "hardware", "__platform__")
     settings = "compiler", "build_type", "os", "arch"
     exports_sources = "include/*", "tests/*",  "linker_scripts/*", "LICENSE"
     generators = "CMakeToolchain", "CMakeDeps"
@@ -104,21 +104,21 @@ class libhal___target___conan(ConanFile):
 
         linker_path = os.path.join(self.package_folder, "linker_scripts")
 
-        self.cpp_info.set_property("cmake_file_name", "libhal-__target__")
+        self.cpp_info.set_property("cmake_file_name", "libhal-__platform__")
         self.cpp_info.set_property("cmake_find_mode", "both")
 
-        self.cpp_info.components["__target__"].set_property(
-            "cmake_target_name",  "libhal::__target__")
-        self.cpp_info.components["__target__"].exelinkflags.append(
+        self.cpp_info.components["__platform__"].set_property(
+            "cmake_target_name",  "libhal::__platform__")
+        self.cpp_info.components["__platform__"].exelinkflags.append(
             "-L" + linker_path)
-        self.cpp_info.components["__target__"].requires = requirements_list
+        self.cpp_info.components["__platform__"].requires = requirements_list
 
         def create_component(self, component, flags):
-            link_script = "-Tlibhal-__target__/" + component + ".ld"
+            link_script = "-Tlibhal-__platform__/" + component + ".ld"
             component_name = "libhal::" + component
             self.cpp_info.components[component].set_property(
                 "cmake_target_name", component_name)
-            self.cpp_info.components[component].requires = ["__target__"]
+            self.cpp_info.components[component].requires = ["__platform__"]
             self.cpp_info.components[component].exelinkflags.append(link_script)
             self.cpp_info.components[component].exelinkflags.extend(flags)
             self.cpp_info.components[component].cflags = flags
@@ -127,8 +127,8 @@ class libhal___target___conan(ConanFile):
         '''
         TODO(libhal-target): Add components for each supported device
         '''
-        create_component(self, "__target___1", architecture_flags)
-        create_component(self, "__target___2", architecture_flags)
+        create_component(self, "__platform___1", architecture_flags)
+        create_component(self, "__platform___2", architecture_flags)
 
     def package_id(self):
         self.info.clear()

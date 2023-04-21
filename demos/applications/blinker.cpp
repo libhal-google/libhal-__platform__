@@ -1,4 +1,4 @@
-#include <libhal-__target__/output_pin.hpp>
+#include <libhal-__platform__/output_pin.hpp>
 #include <libhal-armcortex/dwt_counter.hpp>
 #include <libhal-soft/inert_drivers/inert_output_pin.hpp>
 #include <libhal-util/serial.hpp>

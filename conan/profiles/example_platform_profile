@@ -1,0 +1,3 @@
+{% include "__chip_family__" %}
+{% set platform = "__profile__#" %}
+{% include "__platform__" %}

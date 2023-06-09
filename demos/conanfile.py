@@ -1,3 +1,5 @@
+#!/usr/bin/python
+#
 # Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,20 +16,30 @@
 
 from conan import ConanFile
 from conan.tools.cmake import CMake, cmake_layout
+from conan.errors import ConanInvalidConfiguration
 
 
 class demos(ConanFile):
-    settings = "compiler", "build_type"
+    settings = "compiler", "build_type", "os"
     generators = "CMakeToolchain", "CMakeDeps", "VirtualBuildEnv"
-
-    def requirements(self):
-        self.requires("libhal-__platform__/0.0.1")
-        self.requires("libhal-soft/[^1.1.0]")
-        self.tool_requires("gnu-arm-embedded-toolchain/11.3.0")
-        self.tool_requires("cmake-arm-embedded/0.1.1")
+    options = {"platform": ["ANY"]}
+    default_options = {"platform": "unspecified"}
 
     def layout(self):
-        cmake_layout(self)
+        platform_directory = "build/" + str(self.options.platform)
+        cmake_layout(self, build_folder=platform_directory)
+
+    def validate(self):
+        if self.settings.os != "baremetal":
+            raise ConanInvalidConfiguration(
+                f"Only baremetal OS is allowed here!")
+
+    def build_requirements(self):
+        self.tool_requires("cmake-arm-embedded/1.0.0")
+
+    def requirements(self):
+        self.requires("libhal-__platform__/2.0.0")
+        self.requires("libhal-util/[^2.0.0]")
 
     def build(self):
         cmake = CMake(self)

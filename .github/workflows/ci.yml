@@ -21,9 +21,25 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 12 * * 0'
+    - cron: "0 12 * * 0"
 
 jobs:
   ci:
-    uses: libhal/ci/.github/workflows/library.yml@main
+    uses: libhal/ci/.github/workflows/library.yml@3.0.3
+    secrets: inherit
+
+  profile1:
+    uses: libhal/ci/.github/workflows/platform_deploy.yml@3.0.3
+    with:
+      profile: profile1
+      # Replace with appropriate processor profile
+      processor_profile: https://github.com/libhal/libhal-armcortex.git
+    secrets: inherit
+
+  profile2:
+    uses: libhal/ci/.github/workflows/platform_deploy.yml@3.0.3
+    with:
+      profile: profile2
+      # Replace with appropriate processor profile
+      processor_profile: https://github.com/libhal/libhal-armcortex.git
     secrets: inherit

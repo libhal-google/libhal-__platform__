@@ -11,3 +11,22 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+#pragma once
+
+#include <libhal/output_pin.hpp>
+
+namespace hal::__platform__ {
+class output_pin : public hal::output_pin
+{
+public:
+  /// TODO: Update factory function
+  static hal::result<output_pin> create();
+
+private:
+  // Add constructor
+  hal::status driver_configure(const settings& p_settings) override;
+  hal::result<set_level_t> driver_level(bool p_high) override;
+  hal::result<level_t> driver_level() override;
+};
+}  // namespace hal::__platform__

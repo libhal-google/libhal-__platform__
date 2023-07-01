@@ -12,13 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#pragma once
+#include <libhal-__platform__/output_pin.hpp>
 
-#define BOOST_LEAF_EMBEDDED
-#define BOOST_LEAF_NO_THREADS
+#include <boost/ut.hpp>
 
-#include <string_view>
+namespace hal::__platform__ {
+void __platform___test()
+{
+  using namespace boost::ut;
+  using namespace std::literals;
 
-namespace hal::config {
-constexpr std::string_view platform = "test_package";
-}  // namespace hal::config
+  "__platform__::create()"_test = []() {
+    // Setup
+    // Exercise
+    // Verify
+  };
+};
+}  // namespace hal::__platform__

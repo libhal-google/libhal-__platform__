@@ -12,11 +12,33 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace hal::__platform__ {
-extern void __platform___test();
-}  // namespace hal::__platform__
+#include <libhal-__platform__/output_pin.hpp>
 
-int main()
+namespace hal::__platform__ {
+
+hal::result<output_pin> output_pin::create()
 {
-  hal::__platform__::__platform___test();
+  // Fill this out
+  return output_pin();
 }
+
+hal::status output_pin::driver_configure(
+  [[maybe_unused]] const settings& p_settings)
+{
+  // Fill this out
+  return hal::success();
+}
+
+hal::result<hal::output_pin::set_level_t> output_pin::driver_level(
+  [[maybe_unused]] bool p_high)
+{
+  // Fill this out
+  return set_level_t{};
+}
+
+hal::result<hal::output_pin::level_t> output_pin::driver_level()
+{
+  // Fill this out
+  return hal::output_pin::level_t{ .state = true };
+}
+}  // namespace hal::__platform__

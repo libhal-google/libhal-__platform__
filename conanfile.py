@@ -77,12 +77,12 @@ class libhal___platform___conan(ConanFile):
 
     def build_requirements(self):
         self.tool_requires("libhal-cmake-util/1.0.0")
-        self.build_requires("libhal-util/[^2.0.0]")
         self.test_requires("libhal-mock/[^2.0.0]")
         self.test_requires("boost-ext-ut/1.1.9")
 
     def requirements(self):
         self.requires("libhal/[^2.0.0]")
+        self.requires("libhal-util/[^2.0.0]")
         # Replace with appropriate processor library
         self.requires("libhal-armcortex/[^2.0.0]")
 

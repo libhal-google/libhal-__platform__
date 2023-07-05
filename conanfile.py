@@ -42,16 +42,16 @@ class libhal___platform___conan(ConanFile):
         "platform": [
             "profile1",
             "profile2",
-            "not-me"
+            "ANY"
         ],
     }
 
     default_options = {
-        "platform": "not-me",
+        "platform": "ANY",
     }
 
     @property
-    def _is_me(self):
+    def _use_linker_script(self):
         return (self.options.platform == "profile1" or
                 self.options.platform == "profile2")
 
@@ -133,7 +133,7 @@ class libhal___platform___conan(ConanFile):
         self.cpp_info.set_property("cmake_target_name", "libhal::__platform__")
         self.cpp_info.libs = ["libhal-__platform__"]
 
-        if self._bare_metal and self._is_me:
+        if self._bare_metal and self._use_linker_script:
             linker_path = os.path.join(self.package_folder, "linker_scripts")
             link_script = "-Tlibhal-__platform__/" + \
                 str(self.options.platform) + ".ld"

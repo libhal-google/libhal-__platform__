@@ -24,7 +24,12 @@ This project is not an official Google project. It is not supported by
 Google and Google specifically disclaims all warranties as to its quality,
 merchantability, or fitness for a particular purpose.
 
-## Making a new platform driver
+---
+
+## Making a new platform driver (Delete section below)
+
+Use [libhal/libhal-lpc40](https://github.com/libhal/libhal-lpc40/) as an
+example of the sections a README should have.
 
 To make your own libhal library:
 

@@ -6,7 +6,6 @@
 [![GitHub stars](https://img.shields.io/github/stars/libhal/libhal-__platform__.svg)](https://github.com/libhal/libhal-__platform__/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/libhal/libhal-__platform__.svg)](https://github.com/libhal/libhal-__platform__/network)
 [![GitHub issues](https://img.shields.io/github/issues/libhal/libhal-__platform__.svg)](https://github.com/libhal/libhal-__platform__/issues)
-[![Latest Version](https://libhal.github.io/libhal-__platform__/latest_version.svg)](https://github.com/libhal/libhal-__platform__/blob/main/conanfile.py)
 
 Target library for __platform__ series of devices.
 

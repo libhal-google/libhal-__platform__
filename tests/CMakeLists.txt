@@ -45,7 +45,14 @@ find_package(libhal-util REQUIRED CONFIG)
 find_package(libhal-mock REQUIRED CONFIG)
 
 add_executable(${PROJECT_NAME}
+
+  # Source files
+  ../src/output_pin.cpp
+
+  # Test source files
   __platform__.test.cpp
+
+  # Main file for test
   main.test.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC . ../include)

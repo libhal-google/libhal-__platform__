@@ -17,9 +17,9 @@ name: ✅ Checks
 on:
   workflow_dispatch:
   pull_request:
+  release:
+    types: [published]
   push:
-    tags:
-      - "*"
     branches:
       - main
   schedule:
@@ -27,11 +27,11 @@ on:
 
 jobs:
   ci:
-    uses: libhal/ci/.github/workflows/library.yml@4.0.0
+    uses: libhal/ci/.github/workflows/library.yml@4.1.0
     secrets: inherit
 
   profile1:
-    uses: libhal/ci/.github/workflows/platform_deploy.yml@4.0.0
+    uses: libhal/ci/.github/workflows/platform_deploy.yml@4.1.0
     with:
       profile: profile1
       # Replace with appropriate processor profile
@@ -39,24 +39,9 @@ jobs:
     secrets: inherit
 
   profile2:
-    uses: libhal/ci/.github/workflows/platform_deploy.yml@4.0.0
+    uses: libhal/ci/.github/workflows/platform_deploy.yml@4.1.0
     with:
       profile: profile2
       # Replace with appropriate processor profile
       processor_profile: https://github.com/libhal/libhal-armcortex.git
     secrets: inherit
-
-  # Add more `profile` blocks below for each supported platform profile
-
-  release:
-    # All jobs above MUST pass before creating a release
-    # Add more jobs to the `needs` section as they are added
-    needs: [ci, profile1, profile2]
-    if: startsWith(github.ref, 'refs/tags/')
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          generate_release_notes: true

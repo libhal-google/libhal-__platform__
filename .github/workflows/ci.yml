@@ -18,7 +18,9 @@ on:
   workflow_dispatch:
   pull_request:
   release:
-    types: [published]
+    types:
+      - published
+      - deleted
   push:
     branches:
       - main
@@ -27,11 +29,11 @@ on:
 
 jobs:
   ci:
-    uses: libhal/ci/.github/workflows/library.yml@4.1.0
+    uses: libhal/ci/.github/workflows/library.yml@4.x.y
     secrets: inherit
 
   profile1:
-    uses: libhal/ci/.github/workflows/platform_deploy.yml@4.1.0
+    uses: libhal/ci/.github/workflows/platform_deploy.yml@4.x.y
     with:
       profile: profile1
       # Replace with appropriate processor profile
@@ -39,7 +41,7 @@ jobs:
     secrets: inherit
 
   profile2:
-    uses: libhal/ci/.github/workflows/platform_deploy.yml@4.1.0
+    uses: libhal/ci/.github/workflows/platform_deploy.yml@4.x.y
     with:
       profile: profile2
       # Replace with appropriate processor profile

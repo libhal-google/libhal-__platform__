@@ -34,6 +34,8 @@ foreach(demo IN LISTS DEMOS)
     message(STATUS "Generating Demo for \"${current_project}\"")
     add_executable(${current_project} applications/${demo}.cpp)
     target_compile_features(${current_project} PRIVATE cxx_std_20)
+    target_link_options(${current_project} PRIVATE --oslib=semihost
+        --crt0=minimal)
     target_link_libraries(${current_project} PRIVATE
         startup_code
         libhal::__platform__)

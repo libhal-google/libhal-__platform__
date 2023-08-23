@@ -82,7 +82,7 @@ class libhal___platform___conan(ConanFile):
         self.test_requires("boost-ext-ut/1.1.9")
 
     def requirements(self):
-        self.requires("libhal/[^2.0.0]")
+        self.requires("libhal/[^2.0.1]")
         self.requires("libhal-util/[^3.0.0]")
         # Replace with appropriate processor library
         self.requires("libhal-armcortex/[^2.0.3]")

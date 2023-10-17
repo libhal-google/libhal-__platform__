@@ -16,7 +16,6 @@
 
 from conan import ConanFile
 from conan.tools.cmake import CMake, cmake_layout
-from conan.errors import ConanInvalidConfiguration
 
 
 class demos(ConanFile):
@@ -29,14 +28,9 @@ class demos(ConanFile):
         platform_directory = "build/" + str(self.options.platform)
         cmake_layout(self, build_folder=platform_directory)
 
-    def validate(self):
-        if self.settings.os != "baremetal":
-            raise ConanInvalidConfiguration(
-                f"Only baremetal OS is allowed here!")
-
     def build_requirements(self):
         self.tool_requires("cmake/3.27.1")
-        self.tool_requires("libhal-cmake-util/1.0.0")
+        self.tool_requires("libhal-cmake-util/2.2.0")
 
     def requirements(self):
         self.requires("libhal-__platform__/0.0.1")

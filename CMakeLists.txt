@@ -14,23 +14,23 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-project(libhal-__platform__ VERSION 0.0.1 LANGUAGES CXX)
+project(libhal-__platform__ LANGUAGES CXX)
 
-find_package(libhal REQUIRED CONFIG)
-find_package(libhal-util REQUIRED CONFIG)
+libhal_test_and_make_library(
+  LIBRARY_NAME libhal-__platform__
 
-add_library(libhal-__platform__ src/output_pin.cpp)
+  SOURCES
+  src/output_pin.cpp
 
-target_include_directories(libhal-__platform__ PUBLIC include)
-target_compile_features(libhal-__platform__ PRIVATE cxx_std_20)
-target_compile_options(libhal-__platform__ PRIVATE -Wall -Wextra)
-target_link_libraries(libhal-__platform__ PRIVATE
+  TEST_SOURCES
+  tests/output_pin.test.cpp
+  tests/main.test.cpp
+
+  PACKAGES
+  libhal
+  libhal-util
+
+  LINK_LIBRARIES
   libhal::libhal
   libhal::util
 )
-
-if(NOT BUILD_TESTING STREQUAL OFF)
-  add_subdirectory(tests)
-endif()
-
-install(TARGETS libhal-__platform__)

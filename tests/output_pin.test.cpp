@@ -17,12 +17,12 @@
 #include <boost/ut.hpp>
 
 namespace hal::__platform__ {
-void __platform___test()
+void output_pin_test()
 {
   using namespace boost::ut;
   using namespace std::literals;
 
-  "__platform__::create()"_test = []() {
+  "output_pin::create()"_test = []() {
     // Setup
     // Exercise
     // Verify

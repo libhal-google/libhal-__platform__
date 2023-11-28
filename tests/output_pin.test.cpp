@@ -16,7 +16,7 @@
 
 #include <boost/ut.hpp>
 
-namespace hal::__platform__ {
+namespace hal::__platform__ {  // NOLINT
 void output_pin_test()
 {
   using namespace boost::ut;

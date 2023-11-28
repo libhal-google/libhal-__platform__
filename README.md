@@ -78,7 +78,7 @@ code block in the file with the appropriate processor library.
 
 ```python
 # Replace with appropriate processor library
-self.requires("libhal-armcortex/[^2.0.0]")
+self.requires("libhal-armcortex/[^2.2.1]")
 ```
 
 ### Adding available platforms

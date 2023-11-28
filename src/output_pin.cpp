@@ -14,7 +14,7 @@
 
 #include <libhal-__platform__/output_pin.hpp>
 
-namespace hal::__platform__ {
+namespace hal::__platform__ {  // NOLINT
 
 hal::result<output_pin> output_pin::create()
 {

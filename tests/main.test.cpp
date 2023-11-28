@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace hal::__platform__ {
-extern void __platform___test();
+namespace hal::__platform__ {   // NOLINT
+extern void output_pin_test();  // NOLINT
 }  // namespace hal::__platform__
 
 int main()
 {
-  hal::__platform__::__platform___test();
+  hal::__platform__::output_pin_test();
 }

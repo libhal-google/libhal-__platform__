@@ -16,7 +16,7 @@
 
 #include <libhal/output_pin.hpp>
 
-namespace hal::__platform__ {
+namespace hal::__platform__ {  // NOLINT
 class output_pin : public hal::output_pin
 {
 public:

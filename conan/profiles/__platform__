@@ -1,3 +1,9 @@
+[settings]
+build_type=MinSizeRel
+os=baremetal
+arch={{ arch }}
+libc=custom
+
 [options]
 *:platform={{ platform }}
 

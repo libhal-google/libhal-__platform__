@@ -1,4 +1,4 @@
-// Copyright 2023 Google LLC
+// Copyright 2024 Khalil Estell
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,35 +13,47 @@
 // limitations under the License.
 
 // Replace with the correct processor includes
-#include <libhal-armcortex/startup.hpp>
+#include <libhal-__platform__/output_pin.hpp>
 #include <libhal-armcortex/system_control.hpp>
-#include <libhal/error.hpp>
+#include <libhal-exceptions/control.hpp>
+#include <libhal-util/steady_clock.hpp>
 
 // Application function must be implemented by one of the compilation units
 // (.cpp) files.
-extern hal::status application();
+extern void application();
+
+[[noreturn]] void terminate_handler() noexcept
+{
+  using namespace std::chrono_literals;
+  using namespace hal::literals;
+  // Replace this with something that makes sense...
+  hal::cortex_m::dwt_counter steady_clock(12_MHz);
+  hal::__platform__::output_pin led(1, 10);
+
+  while (true) {
+    led.level(false);
+    hal::delay(steady_clock, 100ms);
+    led.level(true);
+    hal::delay(steady_clock, 100ms);
+    led.level(false);
+    hal::delay(steady_clock, 100ms);
+    led.level(true);
+    hal::delay(steady_clock, 1000ms);
+  }
+}
 
 int main()
 {
-  // Put platform initialization stuff here...
-  // Initialize data section in RAM here...
-  // Enable necessary coprocessors here...
+  // Add system initialization code here such as changing system clock speed.
+  // Add necessary code here or delete this and the comment above...
 
-  auto is_finished = application();
+  // Set terminate routine...
+  hal::set_terminate(terminate_handler);
 
-  if (!is_finished) {
-    // Replace line below here with reset() here.
-    hal::cortex_m::reset();
-  } else {
-    hal::halt();
-  }
+  // Run application
+  application();
 
+  // Reset the device if it gets here
+  hal::cortex_m::reset();  // Replace with something that resets the device
   return 0;
 }
-
-namespace boost {
-void throw_exception(std::exception const&)
-{
-  hal::halt();
-}
-}  // namespace boost
